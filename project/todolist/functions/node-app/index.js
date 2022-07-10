@@ -1,5 +1,9 @@
-// 返回输入参数
-exports.main = async (event) => {
-    console.log('Hello World')
-    return event
+const serverless = require('serverless-http')
+let app = require('./app')
+
+const handler = serverless(app);
+
+exports.main = async (event, context) => {
+    const res = await handler(event, context)
+    return res
 }
